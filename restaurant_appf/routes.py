@@ -56,18 +56,6 @@ github = oauth.register (
     client_kwargs = {'scope': 'user:email'},
 )
 
-def getUserID(email):
-    
-    try:
-        
-        user = db.session.query(User).filter_by(email=email).one()
-        
-        return user.id
-    
-    except:
-        
-        return None
-
 """This page will show all my restaurants"""
 @app.route('/')
 @app.route('/restaurant')
@@ -75,7 +63,7 @@ def show_restaurants():
         
     restaurant = db.session.query(Restaurant).all()    
          
-    return render_template('restaurants.html', restaurant = restaurant)       
+    return render_template('restaurants.html', restaurant = restaurant)      
 
 """This page will be for making a new restaurant"""
 @app.route('/restaurant/new', methods=['GET', 'POST'])
@@ -235,15 +223,25 @@ def g_authorize():
     
     user_email = dict(session)['profile']['email']
     user1 = User(name=dict(session)['profile']['name'], email= user_email)
-    
-    if not (db.session.query(User).filter_by(email=user_email).one()):        
+    print("---------------------------------------------------------------")
+    print (db.session.query(User).filter_by(email=user_email).one())
+    print("---------------------------------------------------------")
+    try:
         
-        db.session.add(user1)
-        db.session.commit()
+        if (db.session.query(User).filter_by(email=user_email).one()) is None:        
         
-    login_user(user1)
+            db.session.add(user1)
+            db.session.commit()
+            
+    except:
+        
+        pass
+        
+    print(user1.id)
+    #login_user(user1)
+    print(user_email)
     
-    return redirect(url_for('show_restaurants'))
+   # return redirect(url_for('show_restaurants'))
 
 @app.route('/github/login')
 def github_login():
