@@ -28,11 +28,11 @@
             {% endif %}                        
           </div>
           <div class="navbar-nav">
-            {% if current_user %}            
+            {% if current_user.is_activated %}            
             <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
             {% else %}
               <a class="nav-item nav-link" href="{{ url_for('glogin') }}">G-Login</a>
-              <a class="nav-item nav-link" href="{{ url_for('flogin') }}">F-Login</a>
+              <a class="nav-item nav-link" href="{{ url_for('github_login') }}">F-Login</a>
             {% endif %}
           </div>
         </div>

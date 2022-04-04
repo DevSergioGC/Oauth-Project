@@ -61,7 +61,7 @@ github = oauth.register (
 @app.route('/restaurant')
 def show_restaurants():    
         
-    restaurant = db.session.query(Restaurant).all()    
+    restaurant = db.session.query(Restaurant).all()        
          
     return render_template('restaurants.html', restaurant = restaurant)      
 
