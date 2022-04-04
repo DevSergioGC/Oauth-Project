@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Log in</h2>
+<div class="main-forms-mini">
+    <div class="login">
+        <form action="{{ url_for('login') }}" method="post">
+            <p>Email</p>
+            <input type="text" name="user_email" placeholder="test@test.com">
+            <p>Password</p>           
+            <input type="password" name="user_pwd">
+            <input type="submit" value="Sign in" class="local-btn">                
+        </form>
+    </div>
+</div>
+{% endblock %}

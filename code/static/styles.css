@@ -1,0 +1,178 @@
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+} 
+
+p{
+  margin-bottom: 3.5px;
+  font-weight: 480;
+}
+
+input[type=text]{
+  border-radius: 2px;   
+}
+
+input[type=submit]{
+  width: 5em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+}
+
+.main_div, .menu_item, .show_restaurants{
+  background-color: rgb(204, 226, 226);
+  border-radius: 5px;  
+  margin: 1em;
+  padding: 8px;
+}
+
+span{
+  margin: 0;
+  font-weight: 500;
+}
+
+.menu_item{
+  margin-bottom: none;
+  margin-top: 5px;
+  color: #1a1717;
+}
+
+.editdeletepane{
+  margin-top: 10px;
+  font-size: 13px;   
+  margin: 3px; 
+  margin-left: 2px;   
+}
+
+a{
+  text-decoration: none; 
+}
+
+a:hover{
+  color: rgb(148, 159, 194);
+}
+
+.cancel_button{
+  margin: 5px;
+}
+
+footer{
+  background-color: #c2c7c9;
+  align-items: center;
+  padding: 1.5em;
+}
+
+.instagram:hover{
+  color: #e9702a;
+}
+
+.github:hover{
+  color: #363434;
+}
+
+.facebook:hover{
+  color: blue;
+}
+
+.facebook, .github, .instagram{
+  text-decoration: none;  
+  margin-bottom: 5px; 
+  margin-left: 2em; 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #1a1717;    
+}
+
+.socials, .login, .local_login{
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+}
+
+.btn-new-item{
+  background-color:#90c572;
+  border-style: none;
+  border-radius: 3px;
+  padding: 6px;
+  margin: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+}
+
+.btn-new-item:hover{
+  color: rgb(255, 255, 255);
+}
+
+.social-google{
+  background-color: rgb(214, 85, 85);
+}
+
+.social-facebook{
+  background-color: #7985ee;
+}
+
+.main-forms-mini{
+  /*Center Div*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 2em;
+  margin-top: none;
+}
+
+.register, .login{
+  background-color: rgb(204, 226, 226);
+  border-radius: 5px;
+  margin: 1em;
+  padding: 2em;  
+  width: 500px;
+  height: 550px; 
+}
+
+input, button{
+  border-radius: 3px;
+  width: 100%;
+  margin-bottom: 15px;
+  height: 2em;
+  border: none;
+}
+
+.register input[type=submit], .login input[type=submit], button {
+  width: 90%;
+  margin-left: 21px;
+  font-weight: 550;
+}
+
+.register input[type=submit]:hover{
+  background-color: #4cbd48;
+  color: #fff;
+}
+
+.register button:hover{
+  background-color: #557fce;
+  color: #fff;
+}
+
+.register p{
+  font-weight: 500;
+}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content%}
+<h2>Register</h2>
+<div class="main-forms-mini">
+    <div class="register">
+        <form action="{{ url_for('register') }}" method="post">
+            <p>Name:</p>
+            <input type="text" name="user_name">
+            <p>Email:</p>
+            <input type="text" name="user_email">
+            <p>Password:</p>
+            <input type="password" name="user_pwd">
+            <p>Confirm password:</p>
+            <input type="password" name="user_pwd2">
+            <br> <br>
+            <input type="submit" value="Register">
+        </form>    
+        <button type="submit" onClick="{{ url_for('glogin') }}">Log in</button>         
+    </div>
+</div>
+
+{% endblock %}

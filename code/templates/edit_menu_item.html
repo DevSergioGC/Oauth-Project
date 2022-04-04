@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="main_div">
+  <h2>{{ r.name }}</h2> <!--Restaurant name-->
+  <form class="" action="{{ url_for('edit_menu_item', restaurant_id=restaurant_id, menu_id=menu_id) }}" method="post">
+    <p>Name:</p>
+    <input type="text" name="menu_name" placeholder="{{ i.name }}"> <!--item name-->
+    <p>Price:</p>
+    <input type="text" name="menu_price" placeholder="{{ i.price }}"> <!--item price-->
+    <p>Description:</p>
+    <input type="text" name="menu_description" placeholder="{{ i.description }}"> <!--item description-->
+    <br> <br>
+    <input type="submit" value="Edit">
+  </form>
+  <a href="{{ url_for('show_menu', restaurant_id=restaurant_id) }}" class="cancel_button">Cancel</a>
+</div>
+
+{% endblock %}
