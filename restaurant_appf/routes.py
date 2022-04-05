@@ -236,9 +236,11 @@ def g_authorize():
         
         pass        
     
-    login_user(user1)  
-    print(f'\n\n--------------------------------------\n{current_user.is_active}\n--------------------------------------')
-    print(f'\n--------------------------------------\n{current_user.is_authenticated}\n--------------------------------------\n\n')      
+    login_user(user1)
+      
+    print(f'\n\n--------------------------------------\nActive: {current_user.is_active}\n--------------------------------------')
+    print(f'\n--------------------------------------\nID: {user1.id} | Name: {user1.name} | Email: {user1.email}\n--------------------------------------')
+    print(f'\n--------------------------------------\nAuthenticated: {current_user.is_authenticated}\n--------------------------------------\n\n')      
     
     return redirect(url_for('show_restaurants'))
 
