@@ -40,7 +40,7 @@ google = oauth.register(
     authorize_url='https://accounts.google.com/o/oauth2/auth',
     authorize_params=None,
     api_base_url='https://www.googleapis.com/oauth2/v1/',
-    userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
+    #userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
     client_kwargs={'scope': 'openid email profile'},
 )
 
@@ -213,7 +213,7 @@ def glogin():
 @app.route('/glogin/authorize')
 def g_authorize():
     
-    google = oauth.create_client('google')  
+    """google = oauth.create_client('google')  
     token = google.authorize_access_token() 
     resp = google.get('userinfo')  
     user_info = resp.json()
@@ -236,19 +236,32 @@ def g_authorize():
         
         pass        
     
-    login_user(user1)    
+    login_user(user1) """   
+    
+    google = oauth.create_client('google')
+    token = google.authorize_access_token()
+    resp = google.get('userinfo').json()
+    print(resp)
     
     return redirect(url_for('show_restaurants'))
 
 @app.route('/github/login')
 def github_login():
     
-    hola = 'hola'
+    github = oauth.create_client('github')
+    redirect_uri = url_for('github_authorize', _external=True)
+    
+    return github.authorize_redirect(redirect_uri)
 
 @app.route('/github/login/authorize')
 def github_authorize():
     
-    pass
+    github = oauth.create_client('github')
+    token = github.authorize_access_token()
+    resp = github.get('user')
+    print(f"\n{resp}\n")
+    
+    return redirect(url_for('show_restaurants'))
 
 @app.route('/logout')
 @login_required
