@@ -223,9 +223,8 @@ def g_authorize():
     
     user_email = dict(session)['profile']['email']
     user1 = User(name=dict(session)['profile']['name'], email= user_email)
-    print("---------------------------------------------------------------")
-    print (db.session.query(User).filter_by(email=user_email).one())
-    print("---------------------------------------------------------")
+    print(f'\n\n--------------------------------------\n{db.session.query(User).filter_by(email=user_email).one()}\n--------------------------------------\n\n')
+
     try:
         
         if (db.session.query(User).filter_by(email=user_email).one()) is None:        
@@ -235,13 +234,11 @@ def g_authorize():
             
     except:
         
-        pass
-        
-    print(user1.id)
-    #login_user(user1)
-    print(user_email)
+        pass        
     
-   # return redirect(url_for('show_restaurants'))
+    login_user(user1)    
+    
+    return redirect(url_for('show_restaurants'))
 
 @app.route('/github/login')
 def github_login():
