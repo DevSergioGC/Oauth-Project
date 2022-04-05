@@ -31,8 +31,8 @@
             {% if current_user.is_active %}            
             <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
             {% else %}
-              <a class="nav-item nav-link" href="{{ url_for('glogin') }}">G-Login</a>
-              <a class="nav-item nav-link" href="{{ url_for('github_login') }}">F-Login</a>
+              <a class="nav-item nav-link" href="{{ url_for('glogin') }}">Google</a>
+              <a class="nav-item nav-link" href="{{ url_for('github_login') }}">Github</a>
             {% endif %}
           </div>
         </div>
