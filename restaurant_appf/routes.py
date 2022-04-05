@@ -227,7 +227,7 @@ def g_authorize():
 
     try:
         
-        if (db.session.query(User).filter_by(email=user_email).one()) is None:        
+        if not (db.session.query(User).filter_by(email=user_email).one()):        
         
             db.session.add(user1)
             db.session.commit()
