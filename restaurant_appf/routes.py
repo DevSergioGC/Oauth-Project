@@ -237,11 +237,8 @@ def g_authorize():
         pass        
     
     login_user(user1)  
-    
-    """"google = oauth.create_client('google')
-    token = google.authorize_access_token()
-    resp = google.get('userinfo').json()
-    print(resp)"""
+    print(f'\n\n--------------------------------------\n{current_user.is_active}\n--------------------------------------')
+    print(f'\n--------------------------------------\n{current_user.is_authenticated}\n--------------------------------------\n\n')      
     
     return redirect(url_for('show_restaurants'))
 
