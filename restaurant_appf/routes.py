@@ -223,18 +223,13 @@ def g_authorize():
     
     user_email = dict(session)['profile']['email']
     user1 = User(name=dict(session)['profile']['name'], email= user_email)
+    
     print(f'\n\n--------------------------------------\n{user_email}\n--------------------------------------\n\n')
 
-    try:
+    if (db.session.query(User).filter_by(email=user_email).one()) is None:        
         
-        if (db.session.query(User).filter_by(email=user_email).one()) is None:        
-        
-            db.session.add(user1)
-            db.session.commit()
-            
-    except:
-        
-        pass        
+        db.session.add(user1)
+        db.session.commit()        
     
     login_user(user1)
       
