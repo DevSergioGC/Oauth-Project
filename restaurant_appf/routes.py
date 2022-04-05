@@ -213,21 +213,21 @@ def glogin():
 @app.route('/glogin/authorize')
 def g_authorize():
     
-    """google = oauth.create_client('google')  
+    google = oauth.create_client('google')  
     token = google.authorize_access_token() 
     resp = google.get('userinfo')  
     user_info = resp.json()
-    user = oauth.google.userinfo() 
+    #user = oauth.google.userinfo() 
     session['profile'] = user_info
     session.permanent = False  
     
     user_email = dict(session)['profile']['email']
     user1 = User(name=dict(session)['profile']['name'], email= user_email)
-    print(f'\n\n--------------------------------------\n{db.session.query(User).filter_by(email=user_email).one()}\n--------------------------------------\n\n')
+    print(f'\n\n--------------------------------------\n{user_email}\n--------------------------------------\n\n')
 
     try:
         
-        if not (db.session.query(User).filter_by(email=user_email).one()):        
+        if (db.session.query(User).filter_by(email=user_email).one()) is None:        
         
             db.session.add(user1)
             db.session.commit()
@@ -236,12 +236,12 @@ def g_authorize():
         
         pass        
     
-    login_user(user1) """   
+    login_user(user1)  
     
-    google = oauth.create_client('google')
+    """"google = oauth.create_client('google')
     token = google.authorize_access_token()
     resp = google.get('userinfo').json()
-    print(resp)
+    print(resp)"""
     
     return redirect(url_for('show_restaurants'))
 
