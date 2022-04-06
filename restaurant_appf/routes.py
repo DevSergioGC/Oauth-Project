@@ -53,7 +53,7 @@ github = oauth.register (
     authorize_url = 'https://github.com/login/oauth/authorize',
     authorize_params = None,
     api_base_url = 'https://api.github.com/',
-    client_kwargs = {'scope': 'user:email'},
+    client_kwargs = {'scope': 'read:user'},
 )
 
 """This page will show all my restaurants"""
@@ -232,12 +232,7 @@ def g_authorize():
     db.session.add(user_login)
     db.session.commit()
     
-    login_user(user_login)
-      
-    print(f'\n\n--------------------------------------\nActive: {current_user.is_active}\n--------------------------------------')
-    print(f'\n--------------------------------------\nID: {user_login.id} | Name: {user_login.name} | Email: {user_login.email}\n--------------------------------------')
-    print(f'\n--------------------------------------\nID: {current_user.id} | Name: {current_user.name} | Email: {current_user.email}\n--------------------------------------')
-    print(f'\n--------------------------------------\nAuthenticated: {current_user.is_authenticated}\n--------------------------------------\n\n')      
+    login_user(user_login)         
     
     return redirect(url_for('show_restaurants'))
 
@@ -254,8 +249,20 @@ def github_authorize():
     
     github = oauth.create_client('github')
     token = github.authorize_access_token()
-    resp = github.get('user')
-    print(f"\n{resp}\n")
+    resp = github.get('user').json()  
+    
+    user_email = resp['login']   
+    
+    user_login = db.session.query(User).filter_by(email=user_email).first()  
+    
+    if user_login is None:
+        
+        user_login = User(name=resp['name'], email= user_email)
+        
+    db.session.add(user_login)
+    db.session.commit()
+    
+    login_user(user_login)     
     
     return redirect(url_for('show_restaurants'))
 
