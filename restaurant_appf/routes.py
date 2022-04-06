@@ -221,26 +221,22 @@ def g_authorize():
     session['profile'] = user_info
     session.permanent = False  
     
-    user_email = dict(session)['profile']['email']
-    user1 = User(name=dict(session)['profile']['name'], email= user_email)
+    user_email = dict(session)['profile']['email']    
     
-    print(f'\n\n--------------------------------------\n{user_email}\n--------------------------------------\n\n')
-
-    try:
-        
-        if (db.session.query(User).filter_by(email=user_email).first()) is None:        
-        
-            db.session.add(user1)
-            db.session.commit()
-        
-    except:
-        
-        pass        
+    user_login = db.session.query(User).filter_by(email=user_email).first()
     
-    login_user(user1)
+    if user_login is None:
+        
+        user_login = User(name=dict(session)['profile']['name'], email= user_email)
+        
+    db.session.add(user_login)
+    db.session.commit()
+    
+    login_user(user_login)
       
     print(f'\n\n--------------------------------------\nActive: {current_user.is_active}\n--------------------------------------')
-    print(f'\n--------------------------------------\nID: {user1.id} | Name: {user1.name} | Email: {user1.email}\n--------------------------------------')
+    print(f'\n--------------------------------------\nID: {user_login.id} | Name: {user_login.name} | Email: {user_login.email}\n--------------------------------------')
+    print(f'\n--------------------------------------\nID: {current_user.id} | Name: {current_user.name} | Email: {current_user.email}\n--------------------------------------')
     print(f'\n--------------------------------------\nAuthenticated: {current_user.is_authenticated}\n--------------------------------------\n\n')      
     
     return redirect(url_for('show_restaurants'))
