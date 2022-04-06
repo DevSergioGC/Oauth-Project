@@ -67,6 +67,7 @@ def show_restaurants():
 
 """This page will be for making a new restaurant"""
 @app.route('/restaurant/new', methods=['GET', 'POST'])
+@login_required
 def new_restaurant():
 
     if request.method == 'POST':
@@ -84,6 +85,7 @@ def new_restaurant():
 
 """This page will be for editing a selected restaurant"""
 @app.route('/restaurant/<int:restaurant_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_restaurant(restaurant_id):
 
     restaurant = db.session.query(Restaurant).filter_by(id=restaurant_id).first()
@@ -106,6 +108,7 @@ def edit_restaurant(restaurant_id):
 
 """This page will be for deleting a selected restaurant"""
 @app.route('/restaurant/<int:restaurant_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_restaurant(restaurant_id):
 
     restaurant = db.session.query(Restaurant).filter_by(id=restaurant_id).first()
@@ -134,6 +137,7 @@ def show_menu(restaurant_id):
 
 """This page is for making a new menu item for a selected restaurant"""
 @app.route('/restaurant/<int:restaurant_id>/menu/new', methods=['GET', 'POST'])
+@login_required
 def new_menu_item(restaurant_id):
 
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).first()
@@ -155,6 +159,7 @@ def new_menu_item(restaurant_id):
 
 """This page is for editing a selected menu item for a selected restaurant"""
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_menu_item(restaurant_id, menu_id):
 
     restaurant = db.session.query(Restaurant).filter_by(id=restaurant_id).first()
@@ -186,6 +191,7 @@ def edit_menu_item(restaurant_id, menu_id):
 
 """This page is for deleting a menu item for a selected restaurant"""
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_menu_item(restaurant_id, menu_id):
 
     items = db.session.query(MenuItem).filter_by(id=menu_id).first()
@@ -270,6 +276,7 @@ def github_authorize():
 @login_required
 def logout():
     
+    #session.pop()
     logout_user()
     
     return redirect(url_for('show_restaurants'))
