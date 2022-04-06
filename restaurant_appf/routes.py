@@ -72,7 +72,7 @@ def new_restaurant():
 
     if request.method == 'POST':
 
-        new_restaurant = Restaurant(name=request.form['restaurant_name'])
+        new_restaurant = Restaurant(name=request.form['restaurant_name'], user_id=current_user.id)
         db.session.add(new_restaurant)
         db.session.commit()
         #flash('New menu item created!')
@@ -145,7 +145,7 @@ def new_menu_item(restaurant_id):
     if request.method == 'POST':
 
         newItem = MenuItem(name=request.form['menu_name'], price=request.form['menu_price'],
-            description=request.form['menu_description'], restaurant_id=restaurant_id)
+            description=request.form['menu_description'], restaurant_id=restaurant_id, user_id=current_user.id)
 
         session.add(newItem)
         session.commit()
@@ -238,7 +238,7 @@ def g_authorize():
     db.session.add(user_login)
     db.session.commit()
     
-    login_user(user_login)         
+    login_user(user_login)    
     
     return redirect(url_for('show_restaurants'))
 
@@ -276,7 +276,7 @@ def github_authorize():
 @login_required
 def logout():
     
-    #session.pop()
+    #session.pop('session')
     logout_user()
     
     return redirect(url_for('show_restaurants'))
