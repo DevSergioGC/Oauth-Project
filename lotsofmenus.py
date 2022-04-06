@@ -2,7 +2,7 @@ from restaurant_appf import db
 from restaurant_appf.models import Restaurant, MenuItem, User
 
 # Create dummy user
-User1 = User(name="Sergio Guzman", email="sergioguzman979899@gmail.com")
+User1 = User(name="Sergio Guzmán", email="sergioguzman979899@gmail.com")
 db.session.add(User1)
 db.session.commit()
 

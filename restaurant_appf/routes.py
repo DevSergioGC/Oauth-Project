@@ -226,10 +226,16 @@ def g_authorize():
     
     print(f'\n\n--------------------------------------\n{user_email}\n--------------------------------------\n\n')
 
-    if not (db.session.query(User).filter_by(email=user_email).one()):        
+    try:
         
-        db.session.add(user1)
-        db.session.commit()        
+        if (db.session.query(User).filter_by(email=user_email).first()) is None:        
+        
+            db.session.add(user1)
+            db.session.commit()
+        
+    except:
+        
+        pass        
     
     login_user(user1)
       
