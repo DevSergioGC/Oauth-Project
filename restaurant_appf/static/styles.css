@@ -176,3 +176,28 @@ input, button{
 .register p{
   font-weight: 500;
 }
+
+.new_item{
+  background-color:#90c572;
+  border-style: none;
+  border-radius: 3px;
+  padding: 6px;
+  margin: 5px;
+  width: 10em;
+  height: 3em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+  padding: 10px;
+}
+
+.new_item a{
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;  
+}
+
+.new_item:hover{
+  background-color: rgb(218, 211, 211);  
+}
