@@ -201,3 +201,11 @@ input, button{
 .new_item:hover{
   background-color: rgb(218, 211, 211);  
 }
+
+input[type='submit']{
+  background-color: #fff;
+}
+
+input[type='submit']:hover{
+  background-color: rgb(93, 196, 98);
+}

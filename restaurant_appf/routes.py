@@ -278,9 +278,8 @@ def github_authorize():
 
 @app.route('/logout')
 @login_required
-def logout():
+def logout():    
     
-    #session.pop('session')
     logout_user()
     
     return redirect(url_for('show_restaurants'))
