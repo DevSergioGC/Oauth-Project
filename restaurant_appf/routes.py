@@ -75,7 +75,7 @@ def new_restaurant():
         new_restaurant = Restaurant(name=request.form['restaurant_name'], user_id=current_user.id)
         db.session.add(new_restaurant)
         db.session.commit()
-        flash(f'New restaurant {new_restaurant.name} successfully created!', 'success')
+        flash(f'New restaurant \'{new_restaurant.name}\' successfully created!', 'success')
 
         return redirect(url_for('show_restaurants'))
 
@@ -240,7 +240,7 @@ def g_authorize():
     
     login_user(user_login)    
     
-    flash(f'Log in as {user_login.email} successfully!', 'success')
+    flash(f'Log in as \'{user_login.email}\' successfully!', 'success')
     
     return redirect(url_for('show_restaurants'))
 
@@ -272,7 +272,7 @@ def github_authorize():
     
     login_user(user_login)  
     
-    flash(f'Log in as {user_login.email} successfully!', 'success')   
+    flash(f'Log in as \'{user_login.email}\' successfully!', 'success')   
     
     return redirect(url_for('show_restaurants'))
 
