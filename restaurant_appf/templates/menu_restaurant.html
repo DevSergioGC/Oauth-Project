@@ -4,10 +4,11 @@
 
 <div class="main">
   <h2>{{ restaurant.name }}</h2> <!-- Restaurant Name -->
+  {% if restaurant.user_id == current_user.id %}
   <div class="new_item">
-    <!--<a href="{{ url_for('new_menu_item', restaurant_id=restaurant_id) }}">Add new item</a>-->
-    <button class="btn-new-item">Add new item</button>
+    <a href="{{ url_for('new_menu_item', restaurant_id=restaurant_id) }}">Add new item</a>    
   </div>
+  {% endif %}
   {% for i in items %} <!-- Menu items -->
     <div class="menu_item">      
       <span><h3>{{ i.name }}</h3></span>

@@ -140,15 +140,15 @@ def show_menu(restaurant_id):
 @login_required
 def new_menu_item(restaurant_id):
 
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).first()
+    restaurant = db.session.query(Restaurant).filter_by(id=restaurant_id).first()
 
     if request.method == 'POST':
 
         newItem = MenuItem(name=request.form['menu_name'], price=request.form['menu_price'],
             description=request.form['menu_description'], restaurant_id=restaurant_id, user_id=current_user.id)
 
-        session.add(newItem)
-        session.commit()
+        db.session.add(newItem)
+        db.session.commit()
         #flash('New menu item created!')
 
         return redirect(url_for('show_menu', restaurant_id=restaurant_id))
