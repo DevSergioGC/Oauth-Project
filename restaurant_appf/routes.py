@@ -75,7 +75,7 @@ def new_restaurant():
         new_restaurant = Restaurant(name=request.form['restaurant_name'], user_id=current_user.id)
         db.session.add(new_restaurant)
         db.session.commit()
-        #flash('New menu item created!')
+        flash(f'New restaurant {new_restaurant.name} successfully created!')
 
         return redirect(url_for('show_restaurants'))
 
@@ -98,7 +98,7 @@ def edit_restaurant(restaurant_id):
 
         db.session.add(restaurant)
         db.session.commit()
-        #flash('Item edited succefully!')
+        flash('Item edited successfully!')
 
         return redirect(url_for('show_restaurants'))
 
@@ -117,7 +117,7 @@ def delete_restaurant(restaurant_id):
 
         db.session.delete(restaurant)
         db.session.commit()
-        #flash('Item deleted succefully!')
+        flash('Item deleted successfully!')
 
         return redirect(url_for('show_restaurants'))
 
@@ -149,7 +149,7 @@ def new_menu_item(restaurant_id):
 
         db.session.add(newItem)
         db.session.commit()
-        #flash('New menu item created!')
+        flash('New menu item created!')
 
         return redirect(url_for('show_menu', restaurant_id=restaurant_id))
 
@@ -181,7 +181,7 @@ def edit_menu_item(restaurant_id, menu_id):
 
         db.session.add(items)
         db.session.commit()
-        #flash('Item edited succefully!')
+        flash('Item edited successfully!')
 
         return redirect(url_for('show_menu', restaurant_id=restaurant_id))
 
@@ -200,7 +200,7 @@ def delete_menu_item(restaurant_id, menu_id):
 
         db.session.delete(items)
         db.session.commit()
-        #flash('Item deleted succefully!')
+        flash('Item deleted successfully!')
 
         return redirect(url_for('show_menu', restaurant_id=restaurant_id))
 
@@ -240,6 +240,8 @@ def g_authorize():
     
     login_user(user_login)    
     
+    flash(f'Log in as {user_login.email} successfully!')
+    
     return redirect(url_for('show_restaurants'))
 
 @app.route('/github/login')
@@ -268,7 +270,9 @@ def github_authorize():
     db.session.add(user_login)
     db.session.commit()
     
-    login_user(user_login)     
+    login_user(user_login)  
+    
+    flash(f'Log in as {user_login.email} successfully!')   
     
     return redirect(url_for('show_restaurants'))
 
