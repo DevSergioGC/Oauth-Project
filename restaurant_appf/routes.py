@@ -219,15 +219,22 @@ def glogin():
 @app.route('/glogin/authorize')
 def g_authorize():
     
-    google = oauth.create_client('google')  
-    token = google.authorize_access_token() 
-    resp = google.get('userinfo')  
-    user_info = resp.json()
-    #user = oauth.google.userinfo() 
-    session['profile'] = user_info
-    session.permanent = False  
+    try:
+        
+        google = oauth.create_client('google')  
+        token = google.authorize_access_token() 
+        resp = google.get('userinfo')  
+        user_info = resp.json()     
+        session['profile'] = user_info
+        session.permanent = False  
     
-    user_email = dict(session)['profile']['email']    
+        user_email = dict(session)['profile']['email']  
+        
+    except:
+        
+        flash('Cannot login to your account. Please retry!', 'danger')
+        
+        return redirect(url_for('show_restaurants'))  
     
     user_login = db.session.query(User).filter_by(email=user_email).first()
     
@@ -253,13 +260,20 @@ def github_login():
     return github.authorize_redirect(redirect_uri)
 
 @app.route('/github/login/authorize')
-def github_authorize():
+def github_authorize():   
     
-    github = oauth.create_client('github')
-    token = github.authorize_access_token()
-    resp = github.get('user').json()  
-    
-    user_email = resp['login']   
+    try:
+        
+        github = oauth.create_client('github')
+        token = github.authorize_access_token()
+        resp = github.get('user').json()
+        user_email = resp['login']  
+        
+    except:
+        
+        flash('Cannot login to your account. Please retry!', 'danger')
+        
+        return redirect(url_for('show_restaurants'))       
     
     user_login = db.session.query(User).filter_by(email=user_email).first()  
     
